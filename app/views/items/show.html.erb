@@ -1,0 +1,8 @@
+<h1>Имя :<%= @item.name %></h1>
+
+<ul>
+  <li>Цена : <%= @item.price %> руб.</li>
+  <li>Описание :<%= urls_to_links(urls_to_images(@item.description)) %></li>
+
+</ul>
+<%= render partial: "shared/email" %>
