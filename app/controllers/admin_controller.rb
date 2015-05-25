@@ -1,10 +1,16 @@
 class AdminController < ApplicationController
   before_filter :check_if_admin
+ def index
 
+ end
 
+  def show
+
+  end
   def users_count
     @users_count = User.count
-    layout "admin"
+    render layout "admin"
   end
+
 
 end
