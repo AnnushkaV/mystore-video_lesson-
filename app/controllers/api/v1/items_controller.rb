@@ -1,20 +1,36 @@
 class Api::V1::ItemsController < ApplicationController
       respond_to :json
+     def index
+       respond_with Item.all
+     end
 
-      def index
-        @item = Item.all
-        respond_with @item.as_json(only:  [:price, :description]), status: 200
+     def show
+       respond_with Item.find(params[:id])
+     end
+
+     def create
+       item = Item.new(item_params)
+       if item.save
+         render json: item, status: 201, location: [:api, item]
+       else
+         render json: { errors: item.errors }, status: 422
+       end
+     end
+
+     def update
+       item = Item.find(params[:id])
+       if item.update(item_params)
+         render json: user, status: 200, location: [:api, item]
+       else
+         render json: { errors: item.errors }, status: 422
+       end
+     end
+
+      def destroy
+        item = Item.find(params[:id])
+        item.destroy
+        head 204
       end
 
 
-     #/items/1 GET
-     def show
-       unless @item
-         render text: "Page not Anna found", status: 404
-       end
-       # or  if  @item = Item.where(id: params[:id]).first
-       # else
-       # render text: "Page not found", status: 404
-
-     end
 end
