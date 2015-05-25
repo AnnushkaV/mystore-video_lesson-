@@ -17,6 +17,7 @@ gem 'rmagick', '~>2.15.0'
 gem 'carrierwave'
 gem 'pony'
 gem 'paperclip'
+gem 'versionist'
 
 gem 'unicorn'
 group :development do
